@@ -1,6 +1,7 @@
 // React Basic and Bootstrap
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import { Link } from "react-router-dom";
+import api from "../../../appwrite";
 import {
   Container,
   Row,
@@ -11,7 +12,7 @@ import {
   Card,
   CardBody,
 } from "reactstrap";
-import { AvForm, AvField } from "availity-reactstrap-validation";
+import { AvForm, AvField, AvGroup, AvInput } from "availity-reactstrap-validation";
 
 //Import Icons
 import FeatherIcon from "feather-icons-react";
@@ -19,8 +20,22 @@ import FeatherIcon from "feather-icons-react";
 // import images
 import signup from "../../../assets/images/user/signup.svg";
 
-class PageSignUp extends Component {
-  render() {
+const PageSignUp = () => {
+    useEffect(()=>{
+      api.currentUser()
+    }, [])
+    const handleSubmit = (event , error , values) => {
+      if(error.length > 0) {
+        console.log("Error : " , error)
+        return
+      }
+      const {firstname, lastname, email,password} = values
+      api.signup(email , password, firstname+' '+lastname).then(resp =>{
+        console.log("After Signup at FrontEND : " , resp)
+      }).catch(err =>{
+        console.log("Error at FrontEND : "  , err)
+      })
+    }
     return (
       <React.Fragment>
         <div className="back-to-home rounded d-none d-sm-block">
@@ -46,7 +61,7 @@ class PageSignUp extends Component {
                 <Card className="login_page shadow rounded border-0">
                   <CardBody>
                     <h4 className="card-title text-center">Signup</h4>
-                    <AvForm className="login-form mt-4">
+                    <AvForm className="login-form mt-4" onSubmit = {handleSubmit}>
                       <Row>
                         <Col md="6">
                           <div className="mb-3">
@@ -188,20 +203,25 @@ class PageSignUp extends Component {
                         <Col md="12">
                           <div className="mb-3">
                             <div className="form-check">
-                              <Input
+                              {/* <Input
                                 type="checkbox"
                                 className="form-check-input"
                                 id="customCheck1"
-                              />
-                              <Label
-                                className="form-check-label"
-                                htmlFor="customCheck1"
-                              >
-                                I Accept{" "}
-                                <Link to="#" className="text-primary">
-                                  Terms And Condition
-                                </Link>
-                              </Label>
+                                required
+                              /> */}
+                              <AvGroup check>
+                              <AvInput type="checkbox" name="avFieldCheckbox" label="Check out this AvField checkbox" required /> 
+                                <Label check
+                                  className="form-check-label"
+                                  htmlFor="customCheck1"
+                                >
+                                  I Accept{" "}
+                                  <Link to="#" className="text-primary">
+                                    Terms And Condition
+                                  </Link>
+                                </Label>
+
+                              </AvGroup>
                             </div>
                           </div>
                         </Col>
@@ -251,6 +271,5 @@ class PageSignUp extends Component {
         </section>
       </React.Fragment>
     );
-  }
 }
 export default PageSignUp;

@@ -10,6 +10,7 @@
     "@stripe/react-stripe-js": "^1.4.1",
     "@stripe/stripe-js": "^1.16.0",
     "aos": "^2.3.4",
+    "appwrite": "^7.0.0",
     "availity-reactstrap-validation": "^2.7.1",
     "axios": "^0.21.1",
     "bootstrap": "^5.0.0-beta2",

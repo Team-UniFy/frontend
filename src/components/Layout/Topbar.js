@@ -1023,13 +1023,14 @@ class Topbar extends Component {
                 return (
                   <div className="buy-button">
                     <a
-                      href="https://dashboard.neotherapists.com/login"
-                      target="_blank"
+                      // href="#self"
+                      // target="_blank"
+                      
                       rel="noopener noreferrer"
                       id="buyButton"
                       className="btn btn-primary"
                     >
-                      Go to Console
+                      Login
                     </a>
                   </div>
                 );

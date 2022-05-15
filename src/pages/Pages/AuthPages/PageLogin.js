@@ -18,9 +18,24 @@ import FeatherIcon from "feather-icons-react";
 
 // import images
 import loginImg from "../../../assets/images/user/login.svg";
+import api from "../../../appwrite";
 
-class PageLogin extends Component {
-  render() {
+// class PageLogin extends Component {
+//   render() {
+  const PageLogin = ()=> {
+    const handleSubmit  = (event , errors , values) => {
+      if(errors.length>0) {
+        console.log("Errors" , errors);
+      }else{
+        console.log("Values : ",values);
+        api.login(values.email , values.password).then(resp => {
+          console.log("Logged in Successfully");
+          api.currentUser()
+        }).catch(err => {
+          console.log("Error while Logging in ", err);
+        })
+      }
+    }
     return (
       <React.Fragment>
         <div className="back-to-home rounded d-none d-sm-block">
@@ -48,7 +63,7 @@ class PageLogin extends Component {
                     <div className="card-title text-center">
                       <h4 className="mb-4">Login</h4>
                     </div>
-                    <AvForm className="login-form mt-4">
+                    <AvForm className="login-form mt-4" onSubmit={handleSubmit}>
                       <Row>
                         <Col lg="12">
                           <div className="mb-3">
@@ -200,6 +215,6 @@ class PageLogin extends Component {
         </section>
       </React.Fragment>
     );
-  }
+  
 }
 export default PageLogin;
