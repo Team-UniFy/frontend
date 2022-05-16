@@ -31,8 +31,8 @@ class Topbar extends Component {
         { id: 1, title: 'Home', link: '/' },
         { id: 2, title: 'About', link: '/about' },
         { id: 3, title: 'Contact', link: '/contact' },
-        { id: 4, title: 'Support', link: '/support' },
-        { id: 5, title: 'Pricing', link: '/pricing' },
+        // { id: 4, title: 'Support', link: '/support' },
+        // { id: 5, title: 'Pricing', link: '/pricing' },
         // {
         //   id: 2,
         //   title: "Landing",
@@ -599,9 +599,9 @@ class Topbar extends Component {
                   <img src={logolight} height="24" className="logo-dark-mode" alt="" /> */}
                   <img
                     style={{ width: '30px', heigth: '30px' }}
-                    src="https://res.cloudinary.com/dx9dnqzaj/image/upload/v1626758727/medical/Manah_Monogram48x48_sw6u7v.png"
-                  />
-                  <span style={{ fontSize: '20px' }}> Manah</span>
+                  src = "https://avatars.githubusercontent.com/u/104053559?s=200&v=4"
+/>
+                  <span style={{ fontSize: '20px' }}> UniFy</span>
                 </a>
               ) : (
                 <a className="logo" href="index.html">
@@ -612,8 +612,8 @@ class Topbar extends Component {
                   <img src={logolight} height="24" className="logo-dark-mode" alt="" /> */}
                   <img
                     style={{ width: '30px', heigth: '30px' }}
-                    src="https://res.cloudinary.com/dx9dnqzaj/image/upload/v1626758727/medical/Manah_Monogram48x48_sw6u7v.png"
-                  />
+                  src = "https://avatars.githubusercontent.com/u/104053559?s=200&v=4"
+/>
                 </a>
               )}
             </div>
@@ -1023,14 +1023,14 @@ class Topbar extends Component {
                 return (
                   <div className="buy-button">
                     <a
-                      // href="#self"
+                      href="auth-login"
                       // target="_blank"
                       
                       rel="noopener noreferrer"
                       id="buyButton"
                       className="btn btn-primary"
                     >
-                      Login
+                       Login
                     </a>
                   </div>
                 );

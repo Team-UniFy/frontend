@@ -41,16 +41,22 @@ const api = {
         )
        
     },
-    currentUser : ()=>{
-        appwrite.account.get()
-        .then(response => console.log("Current User : ",  response))
-        .catch(er => console.log("Error :  " , er))
+    currentUser : async ()=>{
+        return new Promise( (resolve ,  reject) => {
+            appwrite.account.get()
+            .then(response => resolve(response))
+            .catch(er => reject (er))
+            
+        })
     },
-    logout : () =>{
-        appwrite.account.deleteSession('current').then(resp =>{
-            console.log("Deleted : " , resp)
-        }).catch(err=>{
-            console.log("Error in DeleteSession : " ,err);
+    logout : async () =>{
+        return new Promise((resolve , reject)=> {
+            appwrite.account.deleteSession('current').then(resp =>{
+                resolve(resp)
+            }).catch(err=>{
+                reject(err)
+            })
+
         })
     }
 }

@@ -1,6 +1,6 @@
 // React Basic and Bootstrap
 import React, { Component, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link , useHistory } from "react-router-dom";
 import api from "../../../appwrite";
 import {
   Container,
@@ -21,9 +21,17 @@ import FeatherIcon from "feather-icons-react";
 import signup from "../../../assets/images/user/signup.svg";
 
 const PageSignUp = () => {
-    useEffect(()=>{
-      api.currentUser()
-    }, [])
+  let history = useHistory()
+  useEffect(()=>{
+    api.currentUser()
+    .then(response =>{
+      history.replace("/page-contact-detail")
+    })
+    .catch(error => {
+      console.log("Sign UP required");
+    })
+  }, [])
+
     const handleSubmit = (event , error , values) => {
       if(error.length > 0) {
         console.log("Error : " , error)
@@ -32,6 +40,13 @@ const PageSignUp = () => {
       const {firstname, lastname, email,password} = values
       api.signup(email , password, firstname+' '+lastname).then(resp =>{
         console.log("After Signup at FrontEND : " , resp)
+        alert("Account Made Sucessfully! Now Loggin you in")
+        api.login(email , password).then(resp => {
+          // alert("Logged in Successfully");
+          history.push('page-contact-detail')
+        }).catch(err => {
+          alert("Error while Logging in ", err);
+        })
       }).catch(err =>{
         console.log("Error at FrontEND : "  , err)
       })

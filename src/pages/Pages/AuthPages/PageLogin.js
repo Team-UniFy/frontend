@@ -1,6 +1,6 @@
 // React Basic and Bootstrap
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React, { Component, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import {
   Container,
   Row,
@@ -13,6 +13,7 @@ import {
 } from "reactstrap";
 import { AvForm, AvField } from "availity-reactstrap-validation";
 
+
 //Import Icons
 import FeatherIcon from "feather-icons-react";
 
@@ -23,6 +24,16 @@ import api from "../../../appwrite";
 // class PageLogin extends Component {
 //   render() {
   const PageLogin = ()=> {
+    let history = useHistory()
+    useEffect(()=>{
+      api.currentUser()
+      .then(response =>{
+        history.replace("/page-contact-detail")
+      }).catch(err => {
+        console.log(err);
+      })
+    }, [])
+
     const handleSubmit  = (event , errors , values) => {
       if(errors.length>0) {
         console.log("Errors" , errors);
@@ -30,7 +41,7 @@ import api from "../../../appwrite";
         console.log("Values : ",values);
         api.login(values.email , values.password).then(resp => {
           console.log("Logged in Successfully");
-          api.currentUser()
+          history.push('page-contact-detail')
         }).catch(err => {
           console.log("Error while Logging in ", err);
         })
