@@ -188,7 +188,7 @@ const PageSignUp = () => {
                               </i>
                             </div>
                             <AvField
-                              type="text"
+                              type="password"
                               className="form-control ps-5"
                               name="password"
                               id="password"
@@ -247,7 +247,7 @@ const PageSignUp = () => {
                           </Button>
                           </div>
                         </Col>
-                        <Col md="12" className="mt-4 text-center">
+                        {/* <Col md="12" className="mt-4 text-center">
                           <h6>Or Signup With</h6>
                           <Row>
                             <div className="col-6 mt-3">
@@ -262,7 +262,7 @@ const PageSignUp = () => {
                               </div>
                             </div>
                           </Row>
-                        </Col>
+                        </Col> */}
                         <div className="mx-auto">
                           <p className="mb-0 mt-3">
                             <small className="text-dark me-2">
